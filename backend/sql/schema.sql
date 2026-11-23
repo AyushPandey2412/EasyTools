@@ -1,0 +1,6 @@
+-- =============================================================================
+-- Easy Tools Database Schema
+-- Run this file against your PostgreSQL database using psql:
+--   psql -U postgres -d easy_tools -f backend/sql/schema.sql
+-- In this setup phase, this file contains only this header. Tables will be added in later modules.
+-- =============================================================================
