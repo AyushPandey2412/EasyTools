@@ -1,4 +1,15 @@
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { z } from "zod";
+
+// Automatically load backend/.env using Node's built-in process.loadEnvFile
+try {
+  const __dirname = path.dirname(fileURLToPath(import.meta.url));
+  const envPath = path.resolve(__dirname, "../../.env");
+  process.loadEnvFile(envPath);
+} catch {
+  // Rely on existing process.env (e.g. in test suites, CI, or containers)
+}
 
 const envSchema = z.object({
   NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
