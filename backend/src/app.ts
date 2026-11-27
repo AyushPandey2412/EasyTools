@@ -5,7 +5,8 @@ import fastifyHelmet from "@fastify/helmet";
 import fastifyRateLimit from "@fastify/rate-limit";
 import { env } from "./config/env.js";
 import { healthRoutes } from "./routes/health.js";
-import { testRoutes } from "./features/test/test.routes.js";
+import { testRoutes } from "./routes/api/v1/test/index.js";
+import { TestController } from "./features/test/test.controller.js";
 
 export async function buildApp(): Promise<FastifyInstance> {
   const isDev = env.NODE_ENV === "development";
@@ -68,7 +69,10 @@ export async function buildApp(): Promise<FastifyInstance> {
 
   // Register routes
   await app.register(healthRoutes);
-  await app.register(testRoutes);
+  await app.register(testRoutes, { prefix: "/api/v1/test" });
+
+  // Backward compatibility route for /test
+  app.get("/test", TestController.getTest);
 
   return app;
 }
