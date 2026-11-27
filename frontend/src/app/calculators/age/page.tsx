@@ -1,8 +1,13 @@
         'use client'
 
-        import { Box, Typography ,TextField} from '@mui/material'
+        import { Box, Typography ,TextField,Paper} from '@mui/material'
         import { useState } from "react";
         function Agepage() {
+
+
+
+
+            function calculateAge(){}
 
         const[dob,setDob]=useState("")
 
@@ -35,6 +40,8 @@ const birthdayNotReached =
 
         return (
             <Box sx={{display:'flex', flexDirection:'column',gap:3,p:3  }}>
+
+                <Paper sx={{p:3,borderRadius:3,elevation:3,maxWidth:400}}>
                 <Typography variant='h4' fontWeight="bold">Age calculator</Typography>
                 
                 <TextField label="Date of Birth" type='date' value={dob}
@@ -51,6 +58,7 @@ const birthdayNotReached =
 
 {dob && <Typography>Age: {finalAge}</Typography>}
                 
+                </Paper>
                 </Box>
 
         )
